@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Freelancer Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+        }
+
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 50px;
+        }
+
+        @media(max-width: 600px) {
+            .card {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Portfolio</h1>
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('services')">Services</a>
+        <a onclick="showPage('contact')">Contact</a>
+    </nav>
+</header>
+
+<main id="content"></main>
+
+<footer>
+    <p>© 2026 My Portfolio | All Rights Reserved</p>
+</footer>
+
+<script>
+
+function showPage(page) {
+
+    let content = document.getElementById("content");
+
+    if (page === "home") {
+        content.innerHTML = `
+            <div class="card">
+                <h2>Hello, I'm Gokul!</h2>
+                <h3>Freelance Web Developer</h3>
+                <p>I create simple, modern and responsive
+                websites for businesses and individuals.</p>
+                <button onclick="showPage('contact')">
+                    Hire Me
+                </button>
+            </div>
+        `;
+    }
+
+    else if (page === "about") {
+        content.innerHTML = `
+            <div class="card">
+                <h2>About Me</h2>
+                <p>I am a passionate freelance web developer
+                interested in creating attractive websites.</p>
+                <p>Skills: HTML, CSS, JavaScript and ReactJS.</p>
+            </div>
+        `;
+    }
+
+    else if (page === "services") {
+        content.innerHTML = `
+            <div class="card">
+                <h2>My Services</h2>
+                <p>• Website Development</p>
+                <p>• Web Design</p>
+                <p>• Responsive Design</p>
+                <p>• Website Maintenance</p>
+            </div>
+        `;
+    }
+
+    else if (page === "contact") {
+        content.innerHTML = `
+            <div class="card">
+                <h2>Contact Me</h2>
+
+                <form onsubmit="return validateForm(event)">
+
+                    <label>Name</label>
+                    <input type="text" id="name"
+                    placeholder="Enter your name" required>
+
+                    <label>Email</label>
+                    <input type="email" id="email"
+                    placeholder="Enter your email" required>
+
+                    <label>Message</label>
+                    <textarea id="message"
+                    placeholder="Enter your message"
+                    required></textarea>
+
+                    <button type="submit">Send Message</button>
+
+                    <p id="result" class="success"></p>
+
+                </form>
+            </div>
+        `;
+    }
+}
+
+function validateForm(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value.trim();
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name === "" || message === "" ||
+        !emailPattern.test(email)) {
+        alert("Please enter valid details");
+        return false;
+    }
+
+    document.getElementById("result").innerHTML =
+        "Message submitted successfully!";
+
+    return false;
+}
+
+showPage("home");
+
+</script>
+
+</body>
+</html>
